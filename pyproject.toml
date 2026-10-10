@@ -20,6 +20,7 @@ dependencies = [
   "strands-agents>=1.0",
   "strands-agents-tools>=0.2",
   "cedarpy>=4.0",
+  "anthropic[bedrock]>=1.0",
   "jinja2>=3.1",
 ]
 
@@ -35,6 +36,10 @@ pythonpath = ["."]
 [tool.ruff]
 line-length = 100
 target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501", "E731"]
 
 [build-system]
 requires = ["hatchling"]
