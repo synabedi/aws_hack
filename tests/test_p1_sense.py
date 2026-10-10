@@ -8,7 +8,12 @@ import pytest
 from contracts.schemas import Reading
 from sense.depthmap import depth_map_cm, max_depth_cm, render_heatmap
 from sense.level import (
-    angle_deg, extract_waterline, fit_plane_ransac, measure, robust_level, waterline_heights,
+    angle_deg,
+    extract_waterline,
+    fit_plane_ransac,
+    measure,
+    robust_level,
+    waterline_heights,
 )
 from twin.basin import build_basin_from_heightmap, save_basin, save_twin_grid
 

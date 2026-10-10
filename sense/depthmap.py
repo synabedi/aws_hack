@@ -37,13 +37,13 @@ def max_depth_cm(level_m: float, heightmap: np.ndarray, meta: dict | None = None
     below = np.isfinite(hm) & (hm <= level_m)
     if not below.any():
         return 0.0, None
-    labels, n = ndimage.label(below)
+    labels, _n = ndimage.label(below)
     seeds = None
     if visible_xy is not None and meta is not None and len(visible_xy):
         rc = _cells_for_xy(np.asarray(visible_xy, dtype=float), meta, hm.shape)
         if len(rc):
             labs = labels[rc[:, 0], rc[:, 1]]
-            seeds = set(int(v) for v in labs[labs > 0])
+            seeds = {int(v) for v in labs[labs > 0]}
     if not seeds:
         # no visible-water seed: use the global minimum's component
         seeds = {int(labels[np.unravel_index(int(np.nanargmin(np.where(np.isfinite(hm), hm, np.inf))), hm.shape)])}
