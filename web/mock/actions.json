@@ -1,0 +1,100 @@
+[
+ {
+  "action_id": "act_3d180b0897d9",
+  "site_id": "sim_minto",
+  "type": "closure",
+  "status": "proposed",
+  "proposed_by": "site_agent",
+  "justification": "Depth 36 cm with sigma 0.5 cm; median time to the 15 cm closure level now; forecast band p10-p90 at +30 min 37-42 cm. Policy: closures need officer approval.",
+  "created_ts": 1791635489.308343,
+  "approved_by": null,
+  "decided_at": null,
+  "published_at": null,
+  "payload": {
+   "advisory_en": "[SIMULATED] Minto Bridge underpass: water depth 36 cm (±0 cm). Underpass CLOSED to two-wheelers, cars. Divert via Barakhamba Road and Connaught Place outer circle.",
+   "advisory_hi": "[सिम्युलेटेड] मिंटो ब्रिज अंडरपास: पानी की गहराई 36 सेमी (±0 सेमी)। अंडरपास दोपहिया, कारें के लिए बंद। बाराखंभा रोड और कनॉट प्लेस बाहरी सर्कल से होकर जाएँ।",
+   "reading_ts": 1791635488.553532,
+   "frame_uri": "synthetic://sim_minto/1500"
+  },
+  "simulated": true,
+  "reading_status": "confident"
+ },
+ {
+  "action_id": "act_fc621ade406f",
+  "site_id": "sim_moolchand",
+  "type": "closure",
+  "status": "proposed",
+  "proposed_by": "site_agent",
+  "justification": "Depth 29 cm with sigma 0.5 cm; median time to the 15 cm closure level now; forecast band p10-p90 at +30 min 32-44 cm. Policy: closures need officer approval.",
+  "created_ts": 1791635491.966772,
+  "approved_by": null,
+  "decided_at": null,
+  "published_at": null,
+  "payload": {
+   "advisory_en": "[SIMULATED] Moolchand underpass: water depth 29 cm (±0 cm). Underpass CLOSED to two-wheelers. Divert via Lala Lajpat Rai Path and Ring Road.",
+   "advisory_hi": "[सिम्युलेटेड] मूलचंद अंडरपास: पानी की गहराई 29 सेमी (±0 सेमी)। अंडरपास दोपहिया के लिए बंद। लाला लाजपत राय पथ और रिंग रोड से होकर जाएँ।",
+   "reading_ts": 1791635488.553532,
+   "frame_uri": "synthetic://sim_moolchand/1500"
+  },
+  "simulated": true,
+  "reading_status": "confident"
+ },
+ {
+  "action_id": "act_c82925f556a2",
+  "site_id": "sim_prahladpur",
+  "type": "closure",
+  "status": "proposed",
+  "proposed_by": "site_agent",
+  "justification": "Depth 32 cm with sigma 0.5 cm; median time to the 15 cm closure level now; forecast band p10-p90 at +30 min 20-30 cm. Policy: closures need officer approval.",
+  "created_ts": 1791635494.614038,
+  "approved_by": null,
+  "decided_at": null,
+  "published_at": null,
+  "payload": {
+   "advisory_en": "[SIMULATED] Pul Prahladpur underpass: water depth 32 cm (±0 cm). Underpass CLOSED to two-wheelers, cars. Divert via MB Road and Badarpur flyover.",
+   "advisory_hi": "[सिम्युलेटेड] पुल प्रह्लादपुर अंडरपास: पानी की गहराई 32 सेमी (±0 सेमी)। अंडरपास दोपहिया, कारें के लिए बंद। एमबी रोड और बदरपुर फ्लाईओवर से होकर जाएँ।",
+   "reading_ts": 1791635488.553532,
+   "frame_uri": "synthetic://sim_prahladpur/1500"
+  },
+  "simulated": true,
+  "reading_status": "confident"
+ },
+ {
+  "action_id": "act_5cad8274b5a2",
+  "site_id": "sim_igi_t3",
+  "type": "closure",
+  "status": "proposed",
+  "proposed_by": "site_agent",
+  "justification": "Depth 47 cm with sigma 0.5 cm; median time to the 15 cm closure level now; forecast band p10-p90 at +30 min 44-53 cm. Policy: closures need officer approval.",
+  "created_ts": 1791635499.849348,
+  "approved_by": null,
+  "decided_at": null,
+  "published_at": null,
+  "payload": {
+   "advisory_en": "[SIMULATED] IGI T3 approach underpass: water depth 47 cm (±0 cm). Underpass CLOSED to two-wheelers, cars, large cars. Divert via NH48 service road and Dwarka link.",
+   "advisory_hi": "[सिम्युलेटेड] आईजीआई टी3 अंडरपास: पानी की गहराई 47 सेमी (±0 सेमी)। अंडरपास दोपहिया, कारें, बड़ी कारें के लिए बंद। एनएच48 सर्विस रोड और द्वारका लिंक से होकर जाएँ।",
+   "reading_ts": 1791635488.553532,
+   "frame_uri": "synthetic://sim_igi_t3/1500"
+  },
+  "simulated": true,
+  "reading_status": "confident"
+ },
+ {
+  "action_id": "act_6efe94284af7",
+  "site_id": "sim_vasantkunj",
+  "type": "advisory",
+  "status": "published",
+  "proposed_by": "dispatcher",
+  "justification": "Informational advisory: permitted automatically by policy.",
+  "created_ts": 1791635502.7077901,
+  "approved_by": null,
+  "decided_at": null,
+  "published_at": 1791635368.553532,
+  "payload": {
+   "advisory_en": "[SIMULATED] Airport to Vasant Kunj underpass: water rising, depth 6 cm. Drive slowly, avoid the underpass if possible.",
+   "advisory_hi": "[सिम्युलेटेड] वसंत कुंज अंडरपास: पानी बढ़ रहा है, गहराई 6 सेमी। धीरे चलें, संभव हो तो अंडरपास से बचें।"
+  },
+  "simulated": true,
+  "reading_status": "confident"
+ }
+]

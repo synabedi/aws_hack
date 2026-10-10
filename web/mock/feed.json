@@ -1,0 +1,135 @@
+[
+ {
+  "site_id": "dtu_staged",
+  "name": "DTU campus staged flood (real site)",
+  "simulated": false,
+  "lat": 28.7501,
+  "lon": 77.1177,
+  "ts": null,
+  "max_depth_cm": null,
+  "sigma_cm": null,
+  "status": "no_reading",
+  "verdicts": {
+   "closure": null,
+   "pedestrian": null,
+   "two_wheeler": null,
+   "small_car": null,
+   "large_car": null,
+   "bus_truck": null
+  }
+ },
+ {
+  "site_id": "sim_minto",
+  "name": "Minto Bridge underpass",
+  "simulated": true,
+  "lat": 28.6318,
+  "lon": 77.2235,
+  "ts": 1791635488.553532,
+  "max_depth_cm": 36.463152566833855,
+  "sigma_cm": 0.5,
+  "status": "confident",
+  "verdicts": {
+   "closure": false,
+   "pedestrian": false,
+   "two_wheeler": false,
+   "small_car": false,
+   "large_car": true,
+   "bus_truck": true
+  }
+ },
+ {
+  "site_id": "sim_moolchand",
+  "name": "Moolchand underpass",
+  "simulated": true,
+  "lat": 28.566,
+  "lon": 77.234,
+  "ts": 1791635488.553532,
+  "max_depth_cm": 29.229088300011846,
+  "sigma_cm": 0.5,
+  "status": "confident",
+  "verdicts": {
+   "closure": false,
+   "pedestrian": false,
+   "two_wheeler": false,
+   "small_car": true,
+   "large_car": true,
+   "bus_truck": true
+  }
+ },
+ {
+  "site_id": "sim_prahladpur",
+  "name": "Pul Prahladpur underpass",
+  "simulated": true,
+  "lat": 28.4999,
+  "lon": 77.2898,
+  "ts": 1791635488.553532,
+  "max_depth_cm": 32.18785022143423,
+  "sigma_cm": 0.5,
+  "status": "confident",
+  "verdicts": {
+   "closure": false,
+   "pedestrian": false,
+   "two_wheeler": false,
+   "small_car": false,
+   "large_car": true,
+   "bus_truck": true
+  }
+ },
+ {
+  "site_id": "sim_zakhira",
+  "name": "Zakhira underpass",
+  "simulated": true,
+  "lat": 28.669,
+  "lon": 77.153,
+  "ts": 1791635488.553532,
+  "max_depth_cm": 0.34432888868608447,
+  "sigma_cm": 0.5,
+  "status": "confident",
+  "verdicts": {
+   "closure": true,
+   "pedestrian": true,
+   "two_wheeler": true,
+   "small_car": true,
+   "large_car": true,
+   "bus_truck": true
+  }
+ },
+ {
+  "site_id": "sim_igi_t3",
+  "name": "IGI T3 approach underpass",
+  "simulated": true,
+  "lat": 28.5562,
+  "lon": 77.0999,
+  "ts": 1791635488.553532,
+  "max_depth_cm": 46.663731403300055,
+  "sigma_cm": 0.5,
+  "status": "confident",
+  "verdicts": {
+   "closure": false,
+   "pedestrian": false,
+   "two_wheeler": false,
+   "small_car": false,
+   "large_car": false,
+   "bus_truck": true
+  }
+ },
+ {
+  "site_id": "sim_vasantkunj",
+  "name": "Airport to Vasant Kunj underpass",
+  "simulated": true,
+  "lat": 28.5245,
+  "lon": 77.136,
+  "ts": 1791635488.553532,
+  "max_depth_cm": 5.791791835301703,
+  "sigma_cm": 0.5,
+  "status": "confident",
+  "verdicts": {
+   "closure": true,
+   "pedestrian": true,
+   "two_wheeler": true,
+   "small_car": true,
+   "large_car": true,
+   "bus_truck": true
+  }
+ }
+]
