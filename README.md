@@ -6,7 +6,16 @@ and a dispatch desk (an officer-approved, bilingual advisory), with no new hardw
 
 Built for Environmental Hacks (WeMakeDevs x AWS), Oct 8 to 11, 2026. Track: Heat and Water.
 
-Status: under construction. See `docs/` for architecture, validation and limitations.
+Status: P1 (geometry and physics), P2 (perception) and P4 (field protocol, dashboard, story) are built and tested;
+P3 (API, agents, Cedar, AWS deployment) is in progress on `p3-agents-aws`. Validation numbers are pending the
+staged flood (`validation/report.md`). See `docs/architecture.png`, `docs/writeup.md`, `docs/video_script.md`.
+
+## Run the dashboard now (mock data from the physics model)
+
+    cd web && python3 -m http.server 8080     # open http://localhost:8080/?mock=1
+
+Every synthetic site is labelled SIM; the one real site shows "no reading yet" until the staged flood is processed.
+API contract the dashboard expects: `web/API.md`. Field protocol and ground-truth templates: `validation/`.
 
 ## Layout
 
