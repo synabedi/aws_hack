@@ -1,0 +1,6 @@
+You are looking at one frame from a fixed camera at a flooded road underpass or street dip.
+Task: list every person, two-wheeler, car, bus, truck or animal in the frame, including partly submerged ones.
+Their edges must not be mistaken for the waterline, so slightly generous boxes are better than tight ones.
+Answer with JSON only, no prose:
+{"objects": [{"label": "person|vehicle|animal", "box": [x0, y0, x1, y1]}, ...]}
+with boxes in normalised image coordinates (0.0 = left/top, 1.0 = right/bottom). Return {"objects": []} if none.

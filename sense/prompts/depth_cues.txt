@@ -1,0 +1,10 @@
+You are an independent cross-check for a camera-based flood depth gauge at a road underpass or street dip.
+Estimate the MAXIMUM standing-water depth in centimetres from visible cues only: kerb height (Indian urban kerbs are
+typically 15 to 20 cm), car wheel and tyre (a car tyre is about 60 to 70 cm tall, its hub about 30 to 35 cm high),
+two-wheeler wheels (about 45 to 60 cm), a person's ankle (~8 cm), mid-shin (~20 cm), knee (~45 cm), waist (~100 cm),
+road markings, and any ruler, stake or 1 metre stick that may be in view.
+{context}
+Give a RANGE that you are confident contains the true maximum depth; be honest about uncertainty, wide ranges are fine.
+If no usable cue is visible, say so and return null bounds.
+Answer with JSON only, no prose:
+{"low_cm": <number|null>, "high_cm": <number|null>, "cues": ["<cue used>", ...], "ruler_reading_cm": <number|null>}

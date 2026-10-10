@@ -1,0 +1,7 @@
+You are looking at one frame from a fixed camera at a road underpass or street dip that may be flooded.
+Task: locate the single largest area of standing water (a pool or sheet of water on the ground).
+Wet-looking asphalt without visible water, puddle reflections smaller than a car, and the sky are NOT standing water.
+Answer with JSON only, no prose:
+{"water_present": true|false, "box": [x0, y0, x1, y1], "confidence": 0.0-1.0}
+where the box is in normalised image coordinates (0.0 = left/top, 1.0 = right/bottom) and tightly bounds the water.
+If no standing water is visible, return {"water_present": false, "box": null, "confidence": <your confidence>}.

@@ -22,18 +22,22 @@ import json
 import os
 
 import numpy as np
-from scipy import ndimage
 
 from contracts.schemas import Reading, now_ts
 from sense.depthmap import depth_map_cm, max_depth_cm, render_heatmap
+from sense.waterline import (  # noqa: F401
+    MAX_SENSITIVITY_M_PER_PX,
+    MIN_POINTS,
+    extract_waterline,
+    height_sensitivity,
+    waterline_heights,
+)
 
 LEVEL_PERCENTILE = 92.5
-MIN_POINTS = 50
 MAX_SIGMA_CM = 5.0
 TEMPORAL_JUMP_CM = 10.0
 TEMPORAL_WINDOW_S = 30.0
 UP_ANGLE_LIMIT_DEG = 5.0
-MAX_SENSITIVITY_M_PER_PX = 0.02   # drop waterline pixels where 1 px moves height by more than 2 cm
 N_BOOTSTRAP = 200
 
 
@@ -56,50 +60,7 @@ def load_twin(twin_dir: str) -> dict:
     return tw
 
 
-# ------------------------------------------------------------------ waterline
-def extract_waterline(mask: np.ndarray, exclude_mask: np.ndarray | None = None,
-                      border_px: int = 2, exclude_dilate_px: int = 5) -> np.ndarray:
-    """(N, 2) row/col of mask boundary pixels after border and exclusion filtering."""
-    m = np.asarray(mask).astype(bool)
-    inner = ndimage.binary_erosion(m, iterations=1, border_value=0)
-    boundary = m & ~inner
-    boundary[:border_px, :] = False
-    boundary[-border_px:, :] = False
-    boundary[:, :border_px] = False
-    boundary[:, -border_px:] = False
-    if exclude_mask is not None:
-        ex = ndimage.binary_dilation(np.asarray(exclude_mask).astype(bool), iterations=exclude_dilate_px)
-        boundary &= ~ex
-    return np.argwhere(boundary)
-
-
-def height_sensitivity(pointmap: np.ndarray) -> np.ndarray:
-    """Metres of height change per pixel step (max over row/col directions)."""
-    z = pointmap[..., 2].astype(np.float64)
-    gy, gx = np.gradient(z)
-    s = np.maximum(np.abs(gx), np.abs(gy))
-    s[~np.isfinite(s)] = np.inf
-    return s
-
-
-def waterline_heights(boundary_rc: np.ndarray, pointmap: np.ndarray, conf: np.ndarray | None = None,
-                      conf_percentile: float = 10.0, max_sens: float = MAX_SENSITIVITY_M_PER_PX
-                      ) -> tuple[np.ndarray, np.ndarray]:
-    """Heights (m, uncalibrated for datum) and the (N,3) points of the kept waterline pixels."""
-    if len(boundary_rc) == 0:
-        return np.array([]), np.zeros((0, 3))
-    pts = pointmap[boundary_rc[:, 0], boundary_rc[:, 1]].astype(np.float64)
-    keep = np.isfinite(pts).all(axis=1)
-    if conf is not None:
-        finite = conf[np.isfinite(conf)]
-        if finite.size:
-            keep &= conf[boundary_rc[:, 0], boundary_rc[:, 1]] >= np.percentile(finite, conf_percentile)
-    sens = height_sensitivity(pointmap)[boundary_rc[:, 0], boundary_rc[:, 1]]
-    steep_ok = keep & (sens <= max_sens)
-    if steep_ok.sum() >= MIN_POINTS:
-        keep = steep_ok
-    pts = pts[keep]
-    return pts[:, 2], pts
+# waterline extraction lives in sense/waterline.py (P2); re-exported here for callers
 
 
 def robust_level(z: np.ndarray, pct: float = LEVEL_PERCENTILE, n_boot: int = N_BOOTSTRAP,
