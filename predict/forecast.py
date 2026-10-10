@@ -14,7 +14,13 @@ from __future__ import annotations
 import numpy as np
 
 from contracts.schemas import (
-    VEHICLE_CLASSES, BasinTable, Forcing, Forecast, Reading, SiteParams, Thresholds,
+    VEHICLE_CLASSES,
+    BasinTable,
+    Forcing,
+    Forecast,
+    Reading,
+    SiteParams,
+    Thresholds,
 )
 from predict.fit import DEFAULT_PRIOR, fit_params
 from predict.site_model import DrainLaw, integrate
