@@ -1,0 +1,44 @@
+[project]
+name = "jalmaapi"
+version = "0.1.0"
+description = "JalMaapi: camera frames to water depth, forecast and officer-approved dispatch for Delhi waterlogging hotspots"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = { text = "Apache-2.0" }
+dependencies = [
+  "numpy>=1.26",
+  "scipy>=1.11",
+  "pydantic>=2.6",
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.29",
+  "python-multipart>=0.0.9",
+  "pyyaml>=6.0",
+  "boto3>=1.34",
+  "httpx>=0.27",
+  "pillow>=10.0",
+  "opencv-python-headless>=4.9",
+  "strands-agents>=1.0",
+  "strands-agents-tools>=0.2",
+  "cedarpy>=4.0",
+  "jinja2>=3.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.23", "ruff>=0.4"]
+# Heavy perception deps; installed only on the GPU worker / local GPU box.
+gpu = ["torch>=2.3", "torchvision>=0.18", "sam2>=1.1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["contracts", "twin", "sense", "predict", "act", "api", "sim", "validation"]
