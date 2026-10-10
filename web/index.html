@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JalMaapi control room</title>
+<meta name="description" content="Depth in centimetres, minutes to impassable and officer-approved advisories for Delhi waterlogging hotspots.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&family=Fira+Code:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c3.5 4.6 7 8.2 7 12.3a7 7 0 1 1-14 0c0-4.1 3.5-7.7 7-12.3z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7.5 15.5h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    <div><strong>JalMaapi</strong><span class="sub">जल मापी · PWD monsoon control room</span></div>
+  </div>
+  <nav class="tabs" aria-label="Views">
+    <button data-view="city" class="active">City</button>
+    <button data-view="site">Site</button>
+    <button data-view="approvals">Approvals <span id="approval-count" class="count" hidden>0</span></button>
+    <button data-view="pumps">Pumps</button>
+    <button data-view="drains">Drain health</button>
+    <button data-view="feed">Feed</button>
+  </nav>
+  <div class="toolbar">
+    <span id="source-badge" class="badge badge-warn" hidden>MOCK DATA</span>
+    <span id="updated" class="muted small"></span>
+    <label class="officer"><span class="small muted">Officer id</span><input id="officer-id" type="text" placeholder="pwd-nodal-07" autocomplete="off"></label>
+    <button id="theme-toggle" class="icon-btn" aria-label="Toggle light and dark theme" title="Theme">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="app">
+  <section id="view-city" class="view active">
+    <div class="city-grid">
+      <div class="card map-card"><div id="map" role="img" aria-label="Map of hotspots coloured by current depth"></div>
+        <div class="legend small"><span><i class="dot d-none"></i>no reading</span><span><i class="dot d-ok"></i>under 5 cm</span><span><i class="dot d-warn"></i>5 to 15 cm</span><span><i class="dot d-bad"></i>15 cm or more: closure rule</span><span class="tag tag-sim">SIM</span> simulated site</div>
+      </div>
+      <div class="card">
+        <h2>Sites by urgency</h2>
+        <p class="muted small">Ranked by minutes to the 15 cm closure level, then depth. Low-confidence readings never rank as safe.</p>
+        <ol id="site-list" class="site-list"></ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-site" class="view">
+    <div class="site-head">
+      <label class="small muted">Site <select id="site-select"></select></label>
+      <div id="site-title"></div>
+    </div>
+    <div class="site-grid">
+      <div class="card"><h2>Latest frame and depth map</h2><div id="frame-box" class="frame-box"></div><p id="reading-line" class="reading-line"></p></div>
+      <div class="card"><h2>Who can pass</h2><div id="verdicts" class="verdicts"></div><p class="muted small">Thresholds marked <em>assumed</em> have no published standard (two-wheeler, bus and truck). Delhi PWD's operational rule is 15 cm.</p></div>
+      <div class="card wide"><div class="row-between"><h2>Forecast: max depth, next 60 minutes</h2>
+        <label class="small muted">What-if pumps <select id="pumps-select"><option>0</option><option>1</option><option>2</option><option>3</option></select></label></div>
+        <div class="chart-wrap"><canvas id="forecast-chart" aria-label="Forecast depth with 10th to 90th percentile band" role="img"></canvas></div>
+        <p id="forecast-line" class="muted small"></p></div>
+      <div class="card wide"><h2>Depth so far</h2><div class="chart-wrap short"><canvas id="history-chart" aria-label="Measured depth over time" role="img"></canvas></div></div>
+      <div class="card"><h2>Drain health</h2><div id="drain-card"></div></div>
+      <div class="card"><h2>Pending action</h2><div id="site-actions"></div></div>
+    </div>
+  </section>
+
+  <section id="view-approvals" class="view">
+    <div class="card"><h2>Approval queue</h2>
+      <p class="muted small">Closures and reopenings never publish without an officer. Policy, not prompt. Decisions are logged with the officer id and time.</p>
+      <div id="approval-list" class="approval-list"></div></div>
+    <div class="card"><h2>Decided</h2><div id="decided-list" class="approval-list"></div></div>
+  </section>
+
+  <section id="view-pumps" class="view">
+    <div class="card"><h2>Mobile pump allocation</h2><p id="alloc-just" class="muted"></p>
+      <div class="kpis"><div class="kpi"><span class="kpi-label">Forecast-based plan</span><span id="kpi-plan" class="kpi-val"></span><span class="small muted">site-minutes above 15 cm avoided</span></div>
+        <div class="kpi"><span class="kpi-label">Baseline: nearest pump to worst depth</span><span id="kpi-base" class="kpi-val"></span><span class="small muted">site-minutes avoided</span></div></div>
+      <table id="alloc-table" class="table"><thead><tr><th>Site</th><th>Depth now</th><th>Traffic weight</th><th>Pumps (plan)</th><th>Pumps (baseline)</th><th>Marginal benefit per pump</th></tr></thead><tbody></tbody></table>
+      <p class="muted small">The language model explains the allocation; the arithmetic is deterministic Python (act/bidding.py).</p></div>
+  </section>
+
+  <section id="view-drains" class="view">
+    <div class="card"><h2>Drain health per site</h2>
+      <p class="muted small">k is the fitted drain coefficient from each event's recession. Health = latest k ÷ best recorded k. Flagged below 60% on two consecutive events. One coefficient says a site drains slowly, not why.</p>
+      <table id="drain-table" class="table"><thead><tr><th>Site</th><th>k (m^2.5/s)</th><th>95% interval</th><th>Health</th><th>Flag</th><th>Note</th></tr></thead><tbody></tbody></table>
+      <p class="muted small">Staged-flood validation (outlet open vs partly blocked): <span id="drain-validation">pending field data (validation/report.md)</span></p></div>
+  </section>
+
+  <section id="view-feed" class="view">
+    <div class="card"><h2>Public depth feed</h2><p class="muted small">Machine-readable, read-only. The first open per-underpass depth record in an Indian city, if it ships. <code id="feed-url"></code></p><pre id="feed-json" class="json"></pre></div>
+  </section>
+</main>
+
+<footer class="foot small muted">
+  <span>Accuracy validated on one staged test, not a monsoon underpass. Single-basin model. Night and rain-on-lens untested. All sites except the DTU staged site are simulated.</span>
+  <span>AWS: App Runner · Bedrock · S3 · DynamoDB · SNS · EventBridge + Lambda · Amplify. Open source: MapAnything, SAM 2.1, Strands Agents, Cedar (Apache 2.0).</span>
+</footer>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="app.js"></script>
+</body>
+</html>

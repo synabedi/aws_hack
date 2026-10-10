@@ -1,0 +1,12 @@
+# Amplify Hosting: static site, no build step. Set the API URL with a rewrite or the ?api= query parameter.
+version: 1
+frontend:
+  phases:
+    build:
+      commands: []
+  artifacts:
+    baseDirectory: web
+    files:
+      - '**/*'
+  cache:
+    paths: []
