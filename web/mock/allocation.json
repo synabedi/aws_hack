@@ -1,0 +1,157 @@
+{
+ "round_id": "round_156b85c0ff2f",
+ "ts": 1791635504.213493,
+ "inventory": {
+  "pumps": 4,
+  "crews": 4
+ },
+ "bids": [
+  {
+   "site_id": "sim_minto",
+   "pumps": 1,
+   "marginal_benefit": 10.593357725578992,
+   "minutes_avoided": 17.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_minto",
+   "pumps": 2,
+   "marginal_benefit": 12.462773794798814,
+   "minutes_avoided": 20.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_minto",
+   "pumps": 3,
+   "marginal_benefit": 4.9851095179195255,
+   "minutes_avoided": 8.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_moolchand",
+   "pumps": 1,
+   "marginal_benefit": 0.0,
+   "minutes_avoided": 0.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_moolchand",
+   "pumps": 2,
+   "marginal_benefit": 69.7156929712367,
+   "minutes_avoided": 43.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_moolchand",
+   "pumps": 3,
+   "marginal_benefit": 14.591656668398379,
+   "minutes_avoided": 9.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_prahladpur",
+   "pumps": 1,
+   "marginal_benefit": 7.246006802858487,
+   "minutes_avoided": 12.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_prahladpur",
+   "pumps": 2,
+   "marginal_benefit": 6.64217290262028,
+   "minutes_avoided": 11.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_prahladpur",
+   "pumps": 3,
+   "marginal_benefit": 11.472844104525938,
+   "minutes_avoided": 19.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_zakhira",
+   "pumps": 1,
+   "marginal_benefit": 0.0,
+   "minutes_avoided": 0.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_zakhira",
+   "pumps": 2,
+   "marginal_benefit": 0.0,
+   "minutes_avoided": 0.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_zakhira",
+   "pumps": 3,
+   "marginal_benefit": 0.0,
+   "minutes_avoided": 0.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_igi_t3",
+   "pumps": 1,
+   "marginal_benefit": 13.109383206443939,
+   "minutes_avoided": 11.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_igi_t3",
+   "pumps": 2,
+   "marginal_benefit": 19.068193754827547,
+   "minutes_avoided": 16.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_igi_t3",
+   "pumps": 3,
+   "marginal_benefit": 13.109383206443939,
+   "minutes_avoided": 11.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_vasantkunj",
+   "pumps": 1,
+   "marginal_benefit": 0.0,
+   "minutes_avoided": 0.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_vasantkunj",
+   "pumps": 2,
+   "marginal_benefit": 0.0,
+   "minutes_avoided": 0.0,
+   "simulated": true
+  },
+  {
+   "site_id": "sim_vasantkunj",
+   "pumps": 3,
+   "marginal_benefit": 0.0,
+   "minutes_avoided": 0.0,
+   "simulated": true
+  }
+ ],
+ "awards": {
+  "dtu_staged": 0,
+  "sim_minto": 1,
+  "sim_moolchand": 0,
+  "sim_prahladpur": 2,
+  "sim_zakhira": 0,
+  "sim_igi_t3": 1,
+  "sim_vasantkunj": 0
+ },
+ "baseline_awards": {
+  "dtu_staged": 0,
+  "sim_minto": 1,
+  "sim_moolchand": 1,
+  "sim_prahladpur": 1,
+  "sim_zakhira": 0,
+  "sim_igi_t3": 1,
+  "sim_vasantkunj": 0
+ },
+ "justification": "4 mobile pumps allocated by marginal minutes-above-closure avoided over the next 60 min, weighted by traffic. Forecast-based plan avoids 51 site-minutes above 15 cm vs 40 for 'nearest pump to the worst current depth'. All sites simulated.",
+ "benefit_minutes": 51.0,
+ "baseline_benefit_minutes": 40.0
+}

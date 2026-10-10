@@ -1,0 +1,6 @@
+{
+ "generated_ts": 1791635488.553532,
+ "mock": true,
+ "minutes_into_scenario": 25,
+ "note": "Mock data from sim/generate.py + predict/. All sites except dtu_staged are simulated."
+}
