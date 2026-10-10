@@ -1,0 +1,33 @@
+# secrets and env
+.env
+.env.*
+*.pem
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/
+# heavy artefacts: never commit, upload to S3
+*.ply
+*.npy
+*.npz
+*.pt
+*.pth
+*.safetensors
+*.ckpt
+*.mp4
+*.mov
+*.MOV
+*.MP4
+weights/
+checkpoints/
+# local runtime state (JSON store used when no AWS creds)
+data/local/
+# node (if web ever gets a build step)
+node_modules/
+# OS
+.DS_Store
