@@ -13,7 +13,6 @@ from __future__ import annotations
 import argparse
 import csv
 
-
 from contracts.schemas import Forcing, Reading, Thresholds
 from predict.drain_health import compare_passes, fit_k_from_recession
 from predict.fit import fit_params
