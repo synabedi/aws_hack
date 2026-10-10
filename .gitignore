@@ -31,3 +31,6 @@ data/local/
 node_modules/
 # OS
 .DS_Store
+
+# keep the template, ignore real env files
+!.env.example
