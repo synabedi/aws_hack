@@ -1,0 +1,26 @@
+# Passability thresholds (cm of max depth). Per-site copies are editable by the officer.
+# "assumed: true" marks values with no published standard; label them as assumptions in UI and video.
+closure:
+  cm: 15
+  basis: "Delhi PWD Minto Bridge SOP diverts traffic at 6 inches (The Week / PTI, 24 Jun 2025)"
+  assumed: false
+pedestrian:
+  cm: 15
+  basis: "6 inches of moving water can knock a person down (US NWS Turn Around Don't Drown)"
+  assumed: false
+two_wheeler:
+  cm: 15
+  basis: "No published standard found; set equal to the closure rule"
+  assumed: true
+small_car:
+  cm: 30
+  basis: "ARR / WRL TR2017-07 vehicle stability testing, still water (10-15 cm in fast flow)"
+  assumed: false
+large_car:
+  cm: 40
+  basis: "ARR / WRL TR2017-07, still water"
+  assumed: false
+bus_truck:
+  cm: 50
+  basis: "ARR / WRL TR2017-07 value for large 4WD; bus and truck set equal"
+  assumed: true
